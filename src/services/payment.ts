@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-const API = "http://localhost:5000";
+const API = import.meta.env.VITE_API_URL
 
 type PaymentProps = {
   amount: number;
