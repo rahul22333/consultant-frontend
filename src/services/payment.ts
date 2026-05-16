@@ -25,7 +25,6 @@ type PaymentProps = {
 };
 
 export const startPayment = async ({
-  amount,
   name,
   contact,
   date,
