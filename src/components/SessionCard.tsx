@@ -20,55 +20,65 @@ export default function SessionCard({
   videoUrl,
 }: SessionCardProps) {
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm">
+    <div className="bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-gray-100 w-full overflow-hidden">
 
       {/* TITLE */}
-      <h2 className="text-xl font-bold mb-2">
+      <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3">
         {title}
       </h2>
 
       {/* META */}
-      <p className="text-gray-500 text-sm mb-2">
-        ⏱ {duration} | 📞 {mode}
-      </p>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-gray-500 text-sm md:text-base mb-4">
+
+        <span>
+          ⏱ {duration}
+        </span>
+
+        <span>
+          📞 {mode}
+        </span>
+
+      </div>
 
       {/* PRICE */}
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex flex-wrap items-center gap-2 mb-5">
+
         {originalPrice && (
-          <span className="line-through text-gray-400">
+          <span className="line-through text-gray-400 text-lg">
             ₹{originalPrice}
           </span>
         )}
 
-        <span className="text-lg font-bold">
+        <span className="text-3xl font-bold text-gray-900">
           ₹{price}
         </span>
 
         {badge && (
-          <span className="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">
+          <span className="bg-yellow-100 text-yellow-700 text-xs md:text-sm px-3 py-1 rounded-md font-medium">
             {badge}
           </span>
         )}
       </div>
 
       {/* VIDEO */}
-      <div className="bg-gray-200 h-64 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+      <div className="bg-gray-100 aspect-video rounded-xl mb-5 flex items-center justify-center overflow-hidden">
+
         {videoUrl ? (
           <video
             src={videoUrl}
             controls
             preload="metadata"
-            className="w-full h-full object-cover rounded-lg"
+            className="w-full h-full object-cover"
           />
         ) : (
-          <span className="text-gray-500 text-sm">
+          <span className="text-gray-400 text-sm md:text-base">
             ▶ Video Preview
           </span>
         )}
       </div>
 
       {/* DESCRIPTION */}
-      <p className="text-sm text-gray-600 leading-relaxed">
+      <p className="text-sm md:text-base text-gray-600 leading-7">
         {description}
       </p>
     </div>

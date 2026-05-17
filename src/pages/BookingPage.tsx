@@ -229,7 +229,7 @@ export default function BookingPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
 
-        <div className="bg-white p-6 rounded-xl shadow-md max-w-md w-full text-center">
+        <div className="bg-white p-6 rounded-2xl shadow-md max-w-md w-full text-center">
 
           <h2 className="text-2xl font-bold text-green-600 mb-2">
             🎉 Booking Confirmed
@@ -239,7 +239,7 @@ export default function BookingPage() {
             Your consultation session has been booked successfully.
           </p>
 
-          <div className="bg-gray-100 rounded-lg p-4 text-left text-sm mb-5">
+          <div className="bg-gray-100 rounded-xl p-4 text-left text-sm mb-5">
 
             <p>
               <strong>Name:</strong>{" "}
@@ -262,7 +262,7 @@ export default function BookingPage() {
             onClick={() =>
               setBookingSuccess(null)
             }
-            className="bg-purple-600 text-white px-5 py-2 rounded-lg"
+            className="bg-purple-600 text-white px-5 py-2.5 rounded-xl"
           >
             Book Another Session
           </button>
@@ -273,7 +273,7 @@ export default function BookingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 pb-24 md:pb-6">
+    <div className="min-h-screen bg-gray-100 pb-24 md:pb-6 overflow-x-hidden">
 
       {/* HEADER */}
       <Header
@@ -282,7 +282,7 @@ export default function BookingPage() {
         image="https://i.pravatar.cc/100"
       />
 
-      <div className="max-w-6xl mx-auto p-4 grid md:grid-cols-2 gap-6">
+      <div className="max-w-6xl mx-auto px-3 py-4 md:px-6 md:py-8 grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8">
 
         {/* LEFT SIDE */}
         <SessionCard
@@ -296,7 +296,7 @@ export default function BookingPage() {
         />
 
         {/* RIGHT SIDE */}
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
 
           <TimeSlots
             dates={dates}
@@ -316,14 +316,14 @@ export default function BookingPage() {
           />
 
           {/* DESKTOP CTA */}
-          <div className="hidden md:flex justify-end mt-4">
+          <div className="hidden md:flex justify-end">
 
             <button
               disabled={
                 !selectedSlot || isPaying
               }
               onClick={handleOpenModal}
-              className="bg-purple-600 text-white px-6 py-3 rounded-lg disabled:opacity-50"
+              className="bg-purple-600 hover:bg-purple-700 transition text-white px-7 py-3 rounded-xl font-medium disabled:opacity-50 shadow-lg"
             >
               {isPaying
                 ? "Processing..."
@@ -335,18 +335,20 @@ export default function BookingPage() {
       </div>
 
       {/* MOBILE CTA */}
-      <div className="fixed bottom-0 left-0 w-full p-4 bg-white border-t md:hidden">
+      <div className="fixed bottom-0 left-0 w-full p-3 bg-white/95 backdrop-blur border-t md:hidden z-40">
 
         <button
           disabled={
             !selectedSlot || isPaying
           }
           onClick={handleOpenModal}
-          className="w-full bg-purple-600 text-white py-3 rounded-lg disabled:opacity-50"
+          className="w-full bg-purple-600 text-white py-3.5 rounded-xl font-medium disabled:opacity-50 shadow-lg"
         >
           {isPaying
             ? "Processing..."
-            : "Confirm details"}
+            : selectedSlot
+            ? `Continue with ${selectedSlot}`
+            : "Select a slot"}
         </button>
 
       </div>

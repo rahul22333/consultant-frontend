@@ -18,47 +18,59 @@ export default function CheckoutModal({
   selectedSlot,
   onConfirm,
 }: Props) {
+
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 🔄 Reset form when modal opens
   useEffect(() => {
+
     if (open) {
+
       setName("");
       setContact("");
       setLoading(false);
     }
+
   }, [open]);
 
   if (!open) return null;
 
-  // ✅ Better validation
   const isValid =
     name.trim().length >= 2 &&
-    (contact.includes("@") || /^[0-9]{10}$/.test(contact));
+    (contact.includes("@") ||
+      /^[0-9]{10}$/.test(contact));
 
   const handleConfirm = () => {
+
     if (!isValid || loading) return;
 
     setLoading(true);
+
     onConfirm({ name, contact });
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 px-4">
-      
-      <div className="bg-white rounded-xl w-full max-w-md p-5">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-end md:items-center z-50 px-3">
+
+      <div className="bg-white rounded-t-3xl md:rounded-2xl w-full max-w-md p-5 md:p-6 shadow-2xl animate-in slide-in-from-bottom duration-300">
 
         {/* HEADER */}
-        <h2 className="text-lg font-bold mb-3">
+        <h2 className="text-xl font-bold mb-4">
           Confirm your booking
         </h2>
 
         {/* DETAILS */}
-        <div className="bg-gray-100 rounded-lg p-3 mb-4 text-sm">
-          <p><strong>Date:</strong> {selectedDate}</p>
-          <p><strong>Time:</strong> {selectedSlot}</p>
+        <div className="bg-gray-100 rounded-xl p-4 mb-5 text-sm space-y-1">
+
+          <p>
+            <strong>Date:</strong> {selectedDate}
+          </p>
+
+          <p>
+            <strong>Time:</strong> {selectedSlot}
+          </p>
+
         </div>
 
         {/* INPUTS */}
@@ -66,34 +78,41 @@ export default function CheckoutModal({
           type="text"
           placeholder="Your Name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full border p-2 rounded mb-3"
+          onChange={(e) =>
+            setName(e.target.value)
+          }
+          className="w-full border border-gray-200 focus:border-purple-500 outline-none p-3 rounded-xl mb-3"
         />
 
         <input
           type="text"
           placeholder="Email or Phone"
           value={contact}
-          onChange={(e) => setContact(e.target.value)}
-          className="w-full border p-2 rounded mb-4"
+          onChange={(e) =>
+            setContact(e.target.value)
+          }
+          className="w-full border border-gray-200 focus:border-purple-500 outline-none p-3 rounded-xl mb-5"
         />
 
         {/* BUTTON */}
         <button
           disabled={!isValid || loading}
           onClick={handleConfirm}
-          className="w-full bg-purple-600 text-white py-3 rounded-lg disabled:opacity-50"
+          className="w-full bg-purple-600 hover:bg-purple-700 transition text-white py-3.5 rounded-xl font-medium disabled:opacity-50"
         >
-          {loading ? "Processing..." : "Continue to payment"}
+          {loading
+            ? "Processing..."
+            : "Continue to payment"}
         </button>
 
         {/* CANCEL */}
         <button
           onClick={onClose}
-          className="mt-3 text-sm text-gray-500 w-full"
+          className="mt-4 text-sm text-gray-500 w-full"
         >
           Cancel
         </button>
+
       </div>
     </div>
   );
