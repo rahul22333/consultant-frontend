@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import Profilepic from "../assets/Profilepic.jpeg"
 
 import Header from "../components/Header";
 import SessionCard from "../components/SessionCard";
@@ -170,7 +171,7 @@ export default function BookingPage() {
     setIsModalOpen(false);
 
     startPayment({
-      amount: 500,
+      amount: 200,
 
       name: userData.name,
 
@@ -277,20 +278,20 @@ export default function BookingPage() {
 
       {/* HEADER */}
       <Header
-        name="Dr Jainith Lowvanshi"
-        tagline="Dedicated to solve health problems 🙏"
-        image="https://i.pravatar.cc/100"
+        name="Dr Raju Rajiv"
+        tagline="Dedicated to eye related problems 🙏"
+        image={Profilepic}
       />
 
       <div className="max-w-6xl mx-auto px-3 py-4 md:px-6 md:py-8 grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8">
 
         {/* LEFT SIDE */}
         <SessionCard
-          title="Tele consultation, valid for 7 days!"
-          duration="30 mins"
-          mode="Your Phone Number"
-          price={500}
-          originalPrice={999}
+          title="Tele consultation, valid for 5 days!"
+          duration="15 mins"
+          mode="+918789130408"
+          price={200}
+          originalPrice={500}
           badge="Most Popular"
           description="In this exclusive session, you'll engage in a direct and insightful conversation..."
         />
